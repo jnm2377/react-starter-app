@@ -50,15 +50,17 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>Email:</label>
+        <label for='email'>Email:</label>
         <Email
+          id='email'
           name='email'
           value={this.state.fields.email}
           onChange={this.onInputChange}
           type='text'
         />
-        <label>Password:</label>
+        <label for='password'>Password:</label>
         <Password
+          id='password'
           name='password'
           value={this.state.fields.password}
           onChange={this.onInputChange}
