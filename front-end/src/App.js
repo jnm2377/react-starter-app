@@ -13,6 +13,7 @@ import BusinessCasePage from './components/BusinessCasePage.js';
 import LandingPage from './components/LandingPage.js';
 import ChecklistPage from './components/ChecklistPage.js';
 import MedalsPage from './components/MedalsPage.js';
+import LoginPage from './components/LoginPage.js';
 import logo from './logo.svg';
 import './App.css';
 
@@ -28,6 +29,7 @@ const App = () => (
         <Route path='/checklist' component={ChecklistPage}/>
         <Route path='/my-medals' component={MedalsPage}/>
         <Route exact path='/' component={LandingPage}/>
+        <Route path='/login' component={LoginPage}/>
         <Route render={({location}) => (
           <div>
             <h3>Error! No matches for <code>{location.pathname}</code></h3>

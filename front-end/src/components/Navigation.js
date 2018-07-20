@@ -34,6 +34,11 @@ class Navigation extends Component {
               <code>My Medals</code>
             </Link>
           </li>
+          <li>
+            <Link to='/login'>
+              <code>Log In</code>
+            </Link>
+          </li>
         </ul>
       </nav>
     );
