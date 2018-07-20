@@ -18,11 +18,13 @@ class Form extends Component {
     user: {
       email: '',
       password: ''
-    }
+    },
+    message: ''
   };
 
   onFormSubmit = (event) => {
     const user = Object.assign({}, this.state.fields);
+    const message = 'User is logged in!';
     event.preventDefault();
 
     this.setState({
@@ -48,15 +50,15 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <Field
-          placeholder='email'
+        <label>Email:</label>
+        <Email
           name='email'
           value={this.state.fields.email}
           onChange={this.onInputChange}
-          required
+          type='text'
         />
-        <Field
-          placeholder='password'
+        <label>Password:</label>
+        <Password
           name='password'
           value={this.state.fields.password}
           onChange={this.onInputChange}
@@ -68,12 +70,19 @@ class Form extends Component {
   }
 }
 
-class Field extends Component {
+class Email extends Component {
   render() {
     return (
-      <input/>
+      <input type='text' placeholder='email' required/>
     );
   }
 }
 
+class Password extends Component {
+  render() {
+    return (
+      <input type='password' placeholder='password' required/>
+    );
+  }
+}
 export default LoginPage;
