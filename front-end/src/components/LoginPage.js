@@ -5,7 +5,7 @@ import axios from 'axios';
 class LoginPage extends Component {
   render() {
     return (
-      <Form/>
+      <Form handleClick={this.props.handleClick}/>
     );
   }
 }
@@ -15,26 +15,24 @@ class Form extends Component {
     fields: {
       email: '',
       password: ''
-    },
-    user: {
-      email: '',
-      password: '',
-      id: ''
     }
   };
 
   onFormSubmit = (event) => {
-    const user = Object.assign({}, this.state.fields);
-    const message = 'User is logged in!';
+    const user = {
+      email: this.state.fields.email,
+      password: this.state.fields.password
+    } 
     event.preventDefault();
 
     this.setState({
-      user: user,
       fields: {
         email: '',
         password: ''
       }
-    })
+    });
+
+    this.props.handleClick(user);
   };
 
   onInputChange = ({name, value}) => {
@@ -51,7 +49,7 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label for='email'>Email:</label>
+        <label htmlFor='email'>Email:</label>
         <Email
           id='email'
           name='email'
@@ -59,7 +57,7 @@ class Form extends Component {
           onChange={this.onInputChange}
           type='text'
         />
-        <label for='password'>Password:</label>
+        <label htmlFor='password'>Password:</label>
         <Password
           id='password'
           name='password'

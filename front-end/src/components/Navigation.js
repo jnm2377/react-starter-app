@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  Switch,
   NavLink
 } from 'react-router-dom';
 
@@ -15,29 +9,29 @@ class Navigation extends Component {
       <nav>
         <ul>
           <li>
-            <Link to='/'>
+            <NavLink to='/'>
               <code>Home</code>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/business-case'>
+            <NavLink to='/business-case'>
               <code>Business Case</code>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/checklist'>
+            <NavLink to='/checklist'>
               <code>A11y Checklist</code>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/my-medals'>
+            <NavLink to='/my-medals'>
               <code>My Medals</code>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/login'>
+            <NavLink to='/login'>
               <code>Log In</code>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
