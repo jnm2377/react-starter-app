@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import axios from 'axios';
 import Navigation from './components/Navigation.js';
 import BusinessCasePage from './components/BusinessCasePage.js';
 import LandingPage from './components/LandingPage.js';
@@ -25,9 +26,28 @@ class App extends Component {
   }
 
   handleClick = (user) => {
-    console.log('handling click');
     console.log('form data:', user);
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/sessions/login',
+      data: {
+        email: user.email,
+        password: user.password
+      }
+    }).then(res => {
+      console.log('response:', res.data);
+      const user = {
+        email: res.data.email,
+        id: res.data._id
+      }
+      this.setState({user});
+      this.testing();
+    }).catch(err => console.error(err));
   };
+
+  testing = () => {
+    console.log('new state:', this.state);
+  }
 
   render() {
     return (
