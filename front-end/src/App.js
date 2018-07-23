@@ -26,6 +26,7 @@ class App extends Component {
 
   handleClick = (user) => {
     console.log('handling click');
+    console.log('form data:', user);
   };
 
   render() {

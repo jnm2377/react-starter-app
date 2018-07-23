@@ -12,58 +12,43 @@ class LoginPage extends Component {
 
 class Form extends Component {
   state = {
-    fields: {
-      email: '',
-      password: ''
-    }
+    email: '',
+    password: ''
   };
 
   onFormSubmit = (event) => {
-    const user = {
-      email: this.state.fields.email,
-      password: this.state.fields.password
-    } 
     event.preventDefault();
+    const user = Object.assign({}, this.state);
 
     this.setState({
-      fields: {
-        email: '',
-        password: ''
-      }
+      email: '',
+      password: ''
     });
-
+    
     this.props.handleClick(user);
   };
 
-  onInputChange = ({name, value}) => {
-    //making a copy of fields obj
-    const fields = Object.assign({}, this.state.fields);
-
-    //assigning value of value prop to field key with the name of name prop
-    fields[name] = value;
-
-    //updating state with our copy of fields obj
-    this.setState({fields});
+  onInputChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
         <label htmlFor='email'>Email:</label>
-        <Email
+        <input
           id='email'
           name='email'
-          value={this.state.fields.email}
+          value={this.state.email}
           onChange={this.onInputChange}
           type='text'
         />
         <label htmlFor='password'>Password:</label>
-        <Password
+        <input
           id='password'
           name='password'
-          value={this.state.fields.password}
+          value={this.state.password}
           onChange={this.onInputChange}
-          required
         />
         <input type='submit'/>
       </form>
@@ -71,19 +56,4 @@ class Form extends Component {
   }
 }
 
-class Email extends Component {
-  render() {
-    return (
-      <input type='text' placeholder='email' required/>
-    );
-  }
-}
-
-class Password extends Component {
-  render() {
-    return (
-      <input type='password' placeholder='password' required/>
-    );
-  }
-}
 export default LoginPage;
