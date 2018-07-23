@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   handleClick = (user) => {
-    console.log('form data:', user);
     axios({
       method: 'post',
       url: 'http://localhost:3000/sessions/login',
