@@ -7,13 +7,13 @@ const userSchema = mongoose.Schema({
 });
 
 //Hashing password
-userSchema.pre('save', function(next)) {
+userSchema.pre('save', function(next) {
   if(this.isModified('password')) {
     const hashedPass = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
     this.password = hashedPass;
   }
   next();
-}
+});
 
 //Method to authenticate password
 userSchema.methods.auth = function (password) {
