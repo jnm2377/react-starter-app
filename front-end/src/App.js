@@ -19,6 +19,8 @@ import './App.css';
 
 //APP COMPONENT
 const App = () => (
+
+
   <Router>
     <section>
       <Navigation/>
@@ -37,7 +39,7 @@ const App = () => (
         )}/>
       </Switch>
     </section>
-  </Router>
+   </Router>
 
 );
 

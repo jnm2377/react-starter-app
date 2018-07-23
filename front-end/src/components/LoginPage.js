@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 class LoginPage extends Component {
@@ -17,9 +18,9 @@ class Form extends Component {
     },
     user: {
       email: '',
-      password: ''
-    },
-    message: ''
+      password: '',
+      id: ''
+    }
   };
 
   onFormSubmit = (event) => {
