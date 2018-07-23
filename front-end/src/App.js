@@ -22,7 +22,8 @@ class App extends Component {
       id: '',
     },
     checklist: [],
-    badges: []
+    badges: [],
+    isLoggedOut: true
   }
 
   handleClick = (user) => {
@@ -36,15 +37,16 @@ class App extends Component {
       }
     }).then(res => {
       console.log('response:', res.data);
-      const user = {
-        email: res.data.email,
-        id: res.data._id
-      }
-      this.setState({user});
-      this.testing();
+      const copyState = Object.assign({}, this.state);
+      copyState.user.email = res.data.email,
+      copyState.user.id = res.data._id,
+      copyState.isLoggedOut = false;
+      this.setState(copyState);
+      this.testing(); //delete this after development
     }).catch(err => console.error(err));
   };
 
+  //DELETE THIS FUNC AFTER DEVELOPMENT
   testing = () => {
     console.log('new state:', this.state);
   }
@@ -53,13 +55,14 @@ class App extends Component {
     return (
       <Router>
         <section>
-          <Navigation/>
+          <Navigation isLoggedOut={this.state.isLoggedOut}/>
 
           <Switch>
-            <Route path='/business-case' component={BusinessCasePage}/>
-            <Route path='/checklist' component={ChecklistPage}/>
-            <Route path='/my-medals' component={MedalsPage}/>
+            <Route exact path='/business-case' component={BusinessCasePage}/>
+            <Route exact path='/checklist' component={ChecklistPage}/>
+            <Route exact path='/my-medals' component={MedalsPage}/>
             <Route exact path='/' component={LandingPage}/>
+            <Route exact path='/logout' render={()=>( <h2>Need to build logout functionality</h2>)}/>
             <Route exact path='/login' render={props => <LoginPage {...props} handleClick={this.handleClick}/>}/>
             <Route render={({location}) => (
               <div>

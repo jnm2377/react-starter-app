@@ -5,6 +5,22 @@ import {
 
 class Navigation extends Component {
   render() {
+    const login = (
+      <li>
+        <NavLink to='/login'>
+          <code>Log In</code>
+        </NavLink>
+      </li>
+    );
+
+    const logout = (
+      <li>
+        <NavLink to='/logout'>
+          <code>Log Out</code>
+        </NavLink>
+      </li>
+    );
+
     return (
       <nav>
         <ul>
@@ -28,11 +44,7 @@ class Navigation extends Component {
               <code>My Medals</code>
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/login'>
-              <code>Log In</code>
-            </NavLink>
-          </li>
+          {this.props.isLoggedOut ? login : logout}
         </ul>
       </nav>
     );
